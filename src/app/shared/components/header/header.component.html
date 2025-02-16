@@ -1,0 +1,56 @@
+<div class="font-inter flex items-center justify-center px-10 py-6 teal-glow bg-transparent">
+  <div class="flex items-center justify-between w-full max-w-screen-lg">
+    <!-- Logo and Title -->
+    <div class="flex items-center space-x-3">
+      <lucide-angular [img]="Lightbulb" class="size-8"></lucide-angular>
+      <p class="font-semibold text-2xl text-white">Elevate Labs</p>
+    </div>
+
+    <!-- Navigation Icons and User Avatar -->
+    <div class="flex items-center space-x-8">
+      <lucide-angular [img]="Moon" class="my-icon"></lucide-angular>
+
+      <!-- Display Avatar or Default Dummy Image -->
+      <div class="relative">
+        <img
+          *ngIf="user?.photoURL; else defaultAvatar"
+          [src]="user?.photoURL"
+          alt="User Avatar"
+          class="w-10 h-10 rounded-full border-2 border-white"
+        />
+        <ng-template #defaultAvatar>
+          <img
+            src="assets/path-to-default-avatar.png"
+            alt="Default Avatar"
+            class="w-10 h-10 rounded-full border-2 border-white"
+          />
+        </ng-template>
+      </div>
+
+      <!-- Dropdown Menu Button -->
+      <button id="dropdownDefaultButton" class="relative" (click)="toggleDropdown()">
+        <lucide-angular [img]="Menu" class="my-icon"></lucide-angular>
+      </button>
+
+      <!-- Dropdown Menu -->
+      <div *ngIf="isDropdownVisible" id="dropdown" class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-800">
+        <ul class="py-2 text-sm text-gray-800 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+          <li>
+            <a
+            [routerLink]="'/about'"
+            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">About</a>
+          </li>
+          <li>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">Contact</a>
+          </li>
+          <li>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">Setting</a>
+          </li>
+          <li>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">Sign out</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

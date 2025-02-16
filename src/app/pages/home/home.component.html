@@ -1,0 +1,38 @@
+<!-- src/app/home/home.component.html -->
+
+<div class="background-image relative w-full h-screen bg-cover bg-center">
+  <app-header></app-header>
+  <div class="absolute top-10 w-full h-full flex flex-col justify-between px-10 md:px-24 lg:px-48">
+    <!-- Tagline Section -->
+    <div class="self-end mt-16">
+      <p class="text-white font-inter font-semibold text-lg text-end leading-relaxed">
+        Empowering the Next Generation <br>
+        of Startups to Reach <br>
+        Their Full Potential by Providing <br>
+        Unwavering Support and Resources
+      </p>
+    </div>
+    <!-- Welcome and Button Section -->
+    <div class="flex justify-between w-full pb-10">
+      <!-- Welcome Text -->
+      <div>
+        <p class="text-3xl font-semibold text-white">Welcome to</p>
+        <p class="text-6xl font-bold text-white">Elevate Labs</p>
+      </div>
+      
+      <!-- Get Started Button -->
+      <div class="mt-6">
+        <button 
+          (click)="loginWithGoogle()" 
+          class="font-inter bg-transparent border-2 border-white px-6 py-3 rounded-2xl text-white hover:bg-white hover:text-black transition-all">
+          Get Started
+        </button>
+      </div>
+    </div>
+  </div>
+</div>  
+<div class="pt-10">
+  <app-techstack></app-techstack>
+</div>
+<div class="pb-12"> <app-feature-component></app-feature-component></div>
+<app-footer></app-footer>

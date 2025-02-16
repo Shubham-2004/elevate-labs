@@ -1,0 +1,10 @@
+/* filepath: /c:/Users/Admin/OneDrive/Desktop/Elevate-Labs/elevate-labs/src/app/pages/home/home.component.css */
+.background-image {
+    background-image: url('https://img.freepik.com/premium-photo/light-bulb-that-is-lit-up-with-light-bulb-background_745528-6572.jpg');
+    background-size: contain;
+    background-position: center;
+    height: 90vh; /* Adjust the height as needed */
+    background-repeat: no-repeat;
+    width: 100%;
+    position: relative;
+}

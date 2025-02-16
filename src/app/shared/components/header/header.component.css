@@ -1,0 +1,28 @@
+.my-icon {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+}
+
+.teal-glow::before, .teal-glow::after {
+    content: '';
+    position: absolute;
+   
+    box-shadow: 0 0 100px 100px teal;
+}
+
+.teal-glow::before {
+   
+    top: -20px;
+    right: 10;
+    left: 50px;
+}
+
+.teal-glow::after {
+    top: -10px;
+    right: 50px;
+}
+
+.relative-position {
+    position: relative;
+}
