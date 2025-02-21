@@ -1,0 +1,58 @@
+<nav class="flex font-inter justify-between items-center p-4 font-semibold text-lg bg-gray-950 text-white shadow-lg">
+  <ul class="flex w-full">
+    <li class="flex-1 text-center">
+      <a
+        (click)="selectFeature('idea-validation')"
+        [class.active]="selectedFeature === 'idea-validation'"
+        class="text-white hover:text-teal-300 cursor-pointer transition duration-300 ease-in-out transform hover:scale-105"
+      >
+        Idea Validation
+      </a>
+    </li>
+    <li class="flex-1 text-center">
+      <a
+        (click)="selectFeature('market-insights')"
+        [class.active]="selectedFeature === 'market-insights'"
+        class="text-white hover:text-teal-300 cursor-pointer transition duration-300 ease-in-out transform hover:scale-105"
+      >
+        Market Insights
+      </a>
+    </li>
+    <li class="flex-1 text-center">
+      <a
+        (click)="selectFeature('financial-projections')"
+        [class.active]="selectedFeature === 'financial-projections'"
+        class="text-white hover:text-teal-300 cursor-pointer transition duration-300 ease-in-out transform hover:scale-105"
+      >
+        Financial Projections
+      </a>
+    </li>
+    <li class="flex-1 text-center">
+      <a
+        (click)="selectFeature('risk-analysis')"
+        [class.active]="selectedFeature === 'risk-analysis'"
+        class="text-white hover:text-teal-300 cursor-pointer transition duration-300 ease-in-out transform hover:scale-105"
+      >
+        Risk Analysis
+      </a>
+    </li>
+    <li class="flex-1 text-center">
+      <a
+        (click)="selectFeature('generate-landing-page')"
+        [class.active]="selectedFeature === 'generate-landing-page'"
+        class="text-white hover:text-teal-300 cursor-pointer transition duration-300 ease-in-out transform hover:scale-105"
+      >
+        Generate Landing Page
+      </a>
+    </li>
+    <li class="flex-1 text-center">
+      <a
+        (click)="selectFeature('generate-logo')"
+        [class.active]="selectedFeature === 'generate-logo'"
+        class="text-white hover:text-teal-300 cursor-pointer transition duration-300 ease-in-out transform hover:scale-105"
+      >
+        Generate Logo
+      </a>
+    </li>
+  </ul>
+</nav>

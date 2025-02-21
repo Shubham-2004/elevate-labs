@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LogoPreviewComponent } from './logo-preview.component';
+import { LogogenerateComponent } from './logogenerate.component';
 
-describe('LogoPreviewComponent', () => {
-  let component: LogoPreviewComponent;
-  let fixture: ComponentFixture<LogoPreviewComponent>;
+describe('LogogenerateComponent', () => {
+  let component: LogogenerateComponent;
+  let fixture: ComponentFixture<LogogenerateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LogoPreviewComponent]
+      imports: [LogogenerateComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LogoPreviewComponent);
+    fixture = TestBed.createComponent(LogogenerateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
