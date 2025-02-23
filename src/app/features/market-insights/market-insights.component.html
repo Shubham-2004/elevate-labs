@@ -1,1 +1,89 @@
-<p>market-insights works!</p>
+<div class="flex flex-col items-center p-6 bg-gray-800 min-h-screen space-y-10">
+    <!-- Form Section -->
+    <div class="w-full flex justify-center">
+      <div ubCard class="w-[600px] h-auto bg-white shadow-lg rounded-lg">
+        <div ubCardHeader class="bg-teal-800 text-white p-4 rounded-t-lg">
+          <h3 ubCardTitle class="text-xl font-semibold">Generate Market Insights</h3>
+          <p ubCardDescription class="text-sm text-gray-200">
+            Enter your startup idea name to generate market insights.
+          </p>
+        </div>
+        <div ubCardContent class="p-4">
+          <form (ngSubmit)="generateInsights()">
+            <div class="grid w-full items-center gap-4">
+              <div class="flex flex-col space-y-1.5">
+                <label ubLabel htmlFor="startupIdea" class="text-teal-700 font-semibold">Enter Startup Idea</label>
+                <input
+                  [(ngModel)]="startupIdea"
+                  name="startupIdea"
+                  id="startupIdea"
+                  placeholder="e.g., Fitness App"
+                  class="border border-teal-500 rounded-lg p-2 font-inter text-black text-base"
+                  required
+                />
+              </div>
+            </div>
+            <div class="mt-4">
+              <button
+                type="submit"
+                ubButton
+                class="bg-teal-700 text-white px-4 py-2 rounded-lg"
+                [disabled]="loading"
+              >
+                {{ loading ? 'Generating...' : 'Generate Insights' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Market Insights Section -->
+    <div *ngIf="insights || errorMessage" class="w-full flex justify-center">
+      <div ubCard class="w-full h-auto bg-black shadow-lg rounded-lg">
+        <div ubCardHeader class="bg-teal-800 text-white p-4 rounded-t-lg">
+          <h4 class="text-lg font-semibold">Market Insights</h4>
+        </div>
+        <div ubCardContent class="p-4 space-y-4">
+          <!-- Error Message -->
+          <p *ngIf="errorMessage" class="text-red-500">{{ errorMessage }}</p>
+  
+          <!-- Competitors List -->
+          <div *ngIf="insights?.competitors">
+            <h5 class="text-teal-500 font-semibold">Competitors</h5>
+            <ul class="list-disc pl-6 text-gray-300">
+              <li *ngFor="let competitor of insights.competitors">
+                {{ competitor.name }} - {{ competitor.marketShare }}%
+              </li>
+            </ul>
+          </div>
+  
+          <!-- Scaling Strategies Chart -->
+          <div *ngIf="insights?.scalingStrategies">
+            <h5 class="text-teal-500 font-semibold">Scaling Strategies</h5>
+            <div class="chart-container">
+              <canvas
+                baseChart
+                [data]="scalingStrategiesChartData"
+                [options]="scalingStrategiesChartOptions"
+                [type]="'bar'"
+              ></canvas>
+            </div>
+          </div>
+  
+          <!-- External Features Chart -->
+          <div *ngIf="insights?.externalFeatures">
+            <h5 class="text-teal-500 font-semibold">External Features</h5>
+            <div class="chart-container">
+              <canvas
+                baseChart
+                [data]="externalFeaturesChartData"
+                [options]="externalFeaturesChartOptions"
+                [type]="'bar'"
+              ></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

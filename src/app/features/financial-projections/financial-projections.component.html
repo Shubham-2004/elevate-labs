@@ -1,34 +1,57 @@
-<div class="financial-projections">
-    <h1>Financial Projections</h1>
-    <p>Welcome to the financial projections section. Here you will find detailed projections of our financial performance.</p>
-    
-    <section class="projection-details">
-        <h2>Revenue Projections</h2>
-        <p>Our revenue projections for the next quarter are as follows:</p>
-        <ul>
-            <li>January: $10,000</li>
-            <li>February: $12,000</li>
-            <li>March: $15,000</li>
-        </ul>
-    </section>
-    
-    <section class="expense-projections">
-        <h2>Expense Projections</h2>
-        <p>Our expense projections for the next quarter are as follows:</p>
-        <ul>
-            <li>January: $5,000</li>
-            <li>February: $6,000</li>
-            <li>March: $7,000</li>
-        </ul>
-    </section>
-    
-    <section class="profit-projections">
-        <h2>Profit Projections</h2>
-        <p>Our profit projections for the next quarter are as follows:</p>
-        <ul>
-            <li>January: $5,000</li>
-            <li>February: $6,000</li>
-            <li>March: $8,000</li>
-        </ul>
-    </section>
-</div>
+<div class="flex flex-col items-center p-6 min-h-screen space-y-10 text-white">
+    <!-- Form Section -->
+    <div class="w-full max-w-lg flex justify-center">
+      <div class="w-full bg-white shadow-lg rounded-lg border border-teal-700">
+        <div class="bg-teal-800 text-white p-4 rounded-t-lg">
+          <h3 class="text-xl font-bold">Generate Financial Projections</h3>
+          <p class="text-sm italic text-gray-300">
+            Enter your startup idea to generate detailed insights.
+          </p>
+        </div>
+        <div class="p-4">
+          <form (ngSubmit)="generateProjections()">
+            <div class="grid w-full items-center gap-4">
+              <div class="flex flex-col space-y-1.5">
+                <label htmlFor="startupIdea" class="text-teal-800 font-semibold">Enter Startup Idea</label>
+                <input
+                  [(ngModel)]="startupIdea"
+                  name="startupIdea"
+                  id="startupIdea"
+                  placeholder="e.g., Fitness App"
+                  class="border border-teal-500 rounded-lg p-2 font-inter text-black text-base w-full focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-300"
+                  required
+                />
+              </div>
+            </div>
+            <div class="mt-4">
+              <button
+                type="submit"
+                class="bg-teal-700 hover:bg-teal-600 text-white px-4 py-2 rounded-lg w-full transition duration-300"
+                [disabled]="loading"
+              >
+                {{ loading ? 'Generating...' : 'Generate Insights' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Financial Projections Section -->
+    <div *ngIf="projections || errorMessage" class="w-full flex">
+      <div class="w-full bg-gray-900 shadow-lg rounded-lg border border-teal-700">
+        <div class="bg-teal-800 text-white p-4 rounded-t-lg">
+          <h4 class="text-xl font-bold">Financial Projections</h4>
+        </div>
+        <div class="p-4 space-y-4">
+          <!-- Error Message -->
+          <p *ngIf="errorMessage" class="text-red-500 font-semibold">{{ errorMessage }}</p>
+  
+          <!-- Display Projections -->
+          <div *ngIf="projections" class="text-gray-300 text-lg">
+            <div [innerHTML]="formattedProjections"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
