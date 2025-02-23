@@ -1,1 +1,108 @@
-<p>logogenerate works!</p>
+<div class="flex flex-row justify-center items-start p-6 bg-gray-800 min-h-screen space-x-10">
+  <!-- Drawing Pad Section -->
+  <div class="flex flex-col items-center">
+    <!-- Heading for Drawing Pad -->
+    <h2 class="text-2xl bg-gray-950 font-semibold text-white mb-4">Generate Logo by Drawing</h2>
+
+    <!-- Drawing Pad -->
+    <canvas 
+      #drawingCanvas 
+      id="drawingCanvas" 
+      width="800" 
+      height="600" 
+      class="border border-gray-300 bg-white shadow-lg rounded-lg"
+    ></canvas>
+
+    <!-- Controls -->
+    <div class="mt-8 space-y-6 w-full max-w-md">
+      <!-- Color Picker -->
+      <div class="flex items-center justify-between">
+        <label class="text-lg font-medium text-white">Choose Color:</label>
+        <input 
+          type="color" 
+          (change)="setColor(color)" 
+          class="w-12 h-6 rounded-full cursor-pointer border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <!-- Brush Thickness -->
+      <div class="flex items-center justify-between">
+        <label class="text-lg font-medium text-white">Brush Thickness:</label>
+        <div class="flex items-center gap-4">
+          <input 
+            type="range" 
+            (input)="setThickness(thickness)" 
+            min="1" 
+            max="50" 
+            class="w-32 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-500"
+          />
+          <span class="text-sm text-gray-700 font-semibold">{{ thickness }}</span>
+        </div>
+      </div>
+
+      <!-- Mode Buttons -->
+      <div class="flex justify-between space-x-4">
+        <button
+          (click)="setMode('draw')"
+          class="w-full px-4 py-2 bg-blue-500 text-white text-sm font-medium rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out shadow-md"
+        >
+          Draw
+        </button>
+        <button
+          (click)="setMode('erase')"
+          class="w-full px-4 py-2 bg-red-500 text-white text-sm font-medium rounded-lg hover:bg-red-600 transition duration-300 ease-in-out shadow-md"
+        >
+          Erase
+        </button>
+      </div>
+
+      <!-- Undo, Clear, and Send Buttons -->
+      <div class="flex justify-between space-x-4">
+        <button
+          (click)="undo()"
+          class="w-full px-4 py-2 bg-gray-500 text-white text-sm font-medium rounded-lg hover:bg-gray-600 transition duration-300 ease-in-out shadow-md"
+        >
+          Undo
+        </button>
+        <button
+          (click)="clearCanvas()"
+          class="w-full px-4 py-2 bg-yellow-500 text-white text-sm font-medium rounded-lg hover:bg-yellow-600 transition duration-300 ease-in-out shadow-md"
+        >
+          Clear
+        </button>
+        <button
+          (click)="sendDrawing()"
+          class="w-full px-4 py-2 bg-green-500 text-white text-sm font-medium rounded-lg hover:bg-green-600 transition duration-300 ease-in-out shadow-md"
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class=" h-screen w-1 bg-gray-400 blur-sm "></div>
+
+  <!-- Text Box Section -->
+  <div class="flex flex-col items-center w-[600px] h-auto bg-white shadow-lg rounded-lg">
+    <!-- Heading for Text Box -->
+    <div class="bg-gray-950 text-white p-4 rounded-t-lg w-full">
+      <h2 class="text-xl font-semibold">Generate Logo Using a Simple Prompt</h2>
+    </div>
+
+    <div class="p-4 w-full">
+      <form>
+        <div class="grid w-full items-center gap-4">
+          <div class="flex flex-col space-y-1.5">
+            <label for="name" class="text-teal-700 font-semibold">Enter Prompt</label>
+            <textarea id="name" placeholder="Enter the prompt" class="border border-teal-500 rounded-lg p-2 h-32 resize-none font-inter text-lg text-gray-800"></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="flex justify-between p-4 w-full">
+      <button class="border border-teal-500 text-teal-700 px-4 py-2 rounded-lg">Cancel</button>
+      <button class="bg-teal-700 text-white px-4 py-2 rounded-lg">Send</button>
+    </div>
+  </div>
+</div>

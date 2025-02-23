@@ -20,7 +20,6 @@ import { LogogenerateComponent } from "../features/logogenerate/logogenerate.com
   standalone: true, // Mark as standalone
   imports: [
     HeaderComponent,
-    UbButtonDirective,
     SideMenuComponent,
     FeaturesHeaderComponent,
     CommonModule,

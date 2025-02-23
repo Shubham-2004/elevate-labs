@@ -1,1 +1,72 @@
-<p>landingpage works!</p>
+<div class="flex flex-col items-center p-6 bg-gray-800 min-h-screen space-y-10">
+    <!-- Form Section -->
+    <div class="w-full flex justify-center">
+      <div ubCard class="w-[600px] h-auto bg-white shadow-lg rounded-lg">
+        <div ubCardHeader class="bg-teal-800 text-white p-4 rounded-t-lg">
+          <h3 ubCardTitle class="text-xl font-semibold">Generate Landing Page</h3>
+          <p ubCardDescription class="text-sm text-gray-200">
+            Enter a description of your landing page.
+          </p>
+        </div>
+        <div ubCardContent class="p-4">
+          <form (ngSubmit)="generateLandingPage()">
+            <div class="grid w-full items-center gap-4">
+              <div class="flex flex-col space-y-1.5">
+                <label ubLabel htmlFor="prompt" class="text-teal-700 font-semibold"
+                  >Enter Prompt</label
+                >
+                <textarea
+                  [(ngModel)]="prompt"
+                  name="prompt"
+                  id="prompt"
+                  placeholder="Describe your landing page (e.g., a fitness app landing page)"
+                  class="border border-teal-500 rounded-lg p-2 h-32 resize-none font-inter text-black text-base"
+                  required
+                ></textarea>
+              </div>
+            </div>
+            <div class="mt-4">
+              <button
+                type="submit"
+                ubButton
+                class="bg-teal-700 text-white px-4 py-2 rounded-lg"
+                [disabled]="loading"
+              >
+                {{ loading ? 'Generating...' : 'Generate' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Generated Landing Page Preview Section -->
+    <div *ngIf="landingPageCode || errorMessage" class="w-full flex justify-center">
+      <div ubCard class="w-full h-auto bg-black shadow-lg rounded-lg">
+        <div ubCardHeader class="bg-teal-800 text-white p-4 rounded-t-lg">
+          <h4 class="text-lg font-semibold">Generated Landing Page Preview</h4>
+        </div>
+        <div ubCardContent class="p-4 space-y-4">
+          <!-- Raw Code Display -->
+          <div *ngIf="landingPageCode">
+            <h5 class="text-teal-500 font-semibold">Generated Code:</h5>
+            <pre class="text-sm bg-gray-800 text-white p-4 rounded-lg overflow-auto">
+              <code>{{ landingPageCode }}</code>
+            </pre>
+          </div>
+  
+          <!-- Live Output Preview -->
+          <div *ngIf="safeLandingPageCode">
+            <h5 class="text-teal-500 font-semibold">Live Preview:</h5>
+            <div
+              [innerHTML]="safeLandingPageCode"
+              class="w-full h-max overflow-auto border border-teal-500 rounded-lg p-4"
+            ></div>
+          </div>
+  
+          <!-- Error Message -->
+          <p *ngIf="errorMessage" class="text-red-500">{{ errorMessage }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
