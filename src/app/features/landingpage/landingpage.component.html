@@ -1,5 +1,5 @@
 <div class="flex flex-col items-center p-6 bg-gray-800 min-h-screen space-y-10">
-    <!-- Form Section -->
+
     <div class="w-full flex justify-center">
       <div ubCard class="w-[600px] h-auto bg-white shadow-lg rounded-lg">
         <div ubCardHeader class="bg-teal-800 text-white p-4 rounded-t-lg">
@@ -40,7 +40,6 @@
       </div>
     </div>
   
-    <!-- Generated Landing Page Preview Section -->
     <div *ngIf="landingPageCode || errorMessage" class="w-full flex justify-center">
       <div ubCard class="w-full h-auto bg-black shadow-lg rounded-lg">
         <div ubCardHeader class="bg-teal-800 text-white p-4 rounded-t-lg">
@@ -55,7 +54,6 @@
             </pre>
           </div>
   
-          <!-- Live Output Preview -->
           <div *ngIf="safeLandingPageCode">
             <h5 class="text-teal-500 font-semibold">Live Preview:</h5>
             <div
@@ -63,8 +61,7 @@
               class="w-full h-max overflow-auto border border-teal-500 rounded-lg p-4"
             ></div>
           </div>
-  
-          <!-- Error Message -->
+
           <p *ngIf="errorMessage" class="text-red-500">{{ errorMessage }}</p>
         </div>
       </div>

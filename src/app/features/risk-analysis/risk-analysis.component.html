@@ -1,1 +1,54 @@
-<p>risk-analysis works!</p>
+<div class="w-full flex flex-col items-center pt-4">
+    <div ubCard class="w-[600px] h-auto bg-white shadow-lg rounded-lg mb-6">
+      <!-- Card Header -->
+      <div ubCardHeader class="bg-teal-800 text-white p-4 rounded-t-lg">
+        <h3 ubCardTitle class="text-xl font-semibold">Generate Risk Analysis</h3>
+        <p ubCardDescription class="text-sm text-gray-200">
+          Enter a description of your scenario or project to generate a detailed risk analysis.
+        </p>
+      </div>
+  
+      <!-- Card Content -->
+      <div ubCardContent class="p-4">
+        <form (ngSubmit)="generateRiskAnalysis()">
+          <div class="grid w-full items-center gap-4">
+            <!-- Prompt Input -->
+            <div class="flex flex-col space-y-1.5">
+              <label ubLabel htmlFor="prompt" class="text-teal-700 font-semibold">Enter Description</label>
+              <textarea
+                [(ngModel)]="prompt"
+                name="prompt"
+                id="prompt"
+                placeholder="Describe your scenario or project (e.g., launching a new product)"
+                class="border border-teal-500 rounded-lg p-2 h-32 resize-none font-inter text-black text-base"
+                required
+              ></textarea>
+            </div>
+          </div>
+  
+          <!-- Generate Button -->
+          <div class="mt-4">
+            <button
+              type="submit"
+              ubButton
+              class="bg-teal-700 text-white px-4 py-2 rounded-lg"
+              [disabled]="isLoading"
+            >
+              {{ isLoading ? 'Generating...' : 'Generate Risk Analysis' }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  
+    <!-- Result Container -->
+    <div *ngIf="riskAnalysis" class="w-full p-4 bg-gray-900 text-white rounded-lg shadow-lg mb-6">
+      <h4 class="text-lg font-semibold text-teal-500 mb-2">Generated Risk Analysis:</h4>
+      <div [innerHTML]="riskAnalysis" class="text-white"></div>
+    </div>
+  
+    <!-- Error Message -->
+    <div *ngIf="error" class="w-full max-w-2xl mt-6 p-4 bg-red-100 text-red-500 rounded-lg shadow-lg">
+      <p>{{ error }}</p>
+    </div>
+  </div>

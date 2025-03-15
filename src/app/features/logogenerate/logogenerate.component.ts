@@ -1,26 +1,26 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
-
-import { UbCardContentDirective, UbCardDescriptionDirective, UbCardDirective, UbCardFooterDirective, UbCardHeaderDirective, UbCardTitleDirective } from '@/components/ui/card';
+import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-logogenerate',
-  imports: [ UbCardContentDirective,
-      UbCardDescriptionDirective,
-      UbCardDirective,
-      UbCardFooterDirective,
-      UbCardHeaderDirective,
-      UbCardTitleDirective,],
   templateUrl: './logogenerate.component.html',
+  imports : [FormsModule,CommonModule],
   styleUrls: ['./logogenerate.component.css'],
 })
 export class LogogenerateComponent implements AfterViewInit {
   @ViewChild('drawingCanvas') canvasRef!: ElementRef<HTMLCanvasElement>;
   thickness: number = 5; // Default thickness
   color: string = '#000000'; // Default color
+  userPrompt: string = '';
+  generatedImageUrls: string[] = [];
   private ctx!: CanvasRenderingContext2D;
   private drawing: boolean = false;
   mode: string = 'draw'; // Default mode
   history: string[] = [];
+
+  constructor(private http: HttpClient) {}
 
   ngAfterViewInit() {
     const canvas = this.canvasRef.nativeElement;
@@ -28,7 +28,6 @@ export class LogogenerateComponent implements AfterViewInit {
     this.ctx.lineWidth = this.thickness;
     this.ctx.lineCap = 'round';
     this.ctx.strokeStyle = this.color;
-
     canvas.addEventListener('mousedown', this.startDrawing.bind(this));
     canvas.addEventListener('mouseup', this.stopDrawing.bind(this));
     canvas.addEventListener('mousemove', this.draw.bind(this));
@@ -109,5 +108,43 @@ export class LogogenerateComponent implements AfterViewInit {
     const dataURL = this.canvasRef.nativeElement.toDataURL();
     console.log('Sending drawing:', dataURL);
     alert('Drawing sent! (Check console for data URL)');
+  }
+
+  generateLogo() {
+    if (!this.userPrompt.trim()) {
+      alert('Please enter a prompt.');
+      return;
+    }
+
+    this.generatedImageUrls = [];
+
+    const numLogos = 4;
+    for (let i = 0; i < numLogos; i++) {
+      this.generateUniqueLogo(i, numLogos);
+    }
+  }
+
+  private generateUniqueLogo(index: number, total: number) {
+    const uniqueId = Date.now() + Math.random(); 
+    const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(this.userPrompt)}&unique=${uniqueId}/?nologo=true&enhance=true`;
+
+    this.http.get(url, { responseType: 'blob' }).subscribe(
+      (response) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          this.generatedImageUrls.push(reader.result as string);
+
+          // Check if all logos have been generated
+          if (this.generatedImageUrls.length === total) {
+            console.log('All logos generated:', this.generatedImageUrls);
+          }
+        };
+        reader.readAsDataURL(response);
+      },
+      (error) => {
+        console.error('Error generating logo:', error);
+        alert('Failed to generate logo. Please try again.');
+      }
+    );
   }
 }
