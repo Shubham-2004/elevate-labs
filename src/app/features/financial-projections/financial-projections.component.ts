@@ -33,7 +33,7 @@ export class FinancialProjectionsComponent {
 
     const payload = { idea: this.startupIdea };
 
-    this.http.post('http://localhost:5000/api/financial-projections', payload, { responseType: 'text' }).subscribe(
+    this.http.post('https://elevate-labs.onrender.com/api/financial-projections', payload, { responseType: 'text' }).subscribe(
       (response) => {
         this.loading = false;
         this.projections = response;

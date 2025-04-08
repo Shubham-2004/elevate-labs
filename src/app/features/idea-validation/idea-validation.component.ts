@@ -53,7 +53,7 @@ export class IdeaValidationComponent {
       step: this.currentStep, 
     };
 
-    this.http.post<any>('http://localhost:5000/api/validate-idea', payload).subscribe(
+    this.http.post<any>('https://elevate-labs.onrender.com/api/validate-idea', payload).subscribe(
       (response) => {
         this.loading = false;
 

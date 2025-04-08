@@ -29,7 +29,7 @@ export class RiskAnalysisComponent {
     this.riskAnalysis = '';
 
     this.http
-      .post<{ riskAnalysis: string }>('http://localhost:5000/api/risk-analysis', { prompt: this.prompt })
+      .post<{ riskAnalysis: string }>('https://elevate-labs.onrender.com/api/risk-analysis', { prompt: this.prompt })
       .subscribe(
         (response) => {
           // Sanitize the HTML content before rendering

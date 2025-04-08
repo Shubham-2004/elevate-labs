@@ -75,7 +75,7 @@ export class MarketInsightsComponent {
 
     const payload = { idea: this.startupIdea };
 
-    this.http.post<any>('http://localhost:5000/api/market-insights', payload).subscribe(
+    this.http.post<any>('https://elevate-labs.onrender.com/api/market-insights', payload).subscribe(
       (response) => {
         this.loading = false;
         this.insights = response;

@@ -31,7 +31,7 @@ export class LandingpageComponent {
     this.landingPageCode = '';
     const payload = { prompt: this.prompt };
 
-    this.http.post<any>('http://localhost:5000/api/generate-landing-page', payload).subscribe(
+    this.http.post<any>('https://elevate-labs.onrender.com/api/generate-landing-page', payload).subscribe(
       (response) => {
         this.loading = false;
         this.landingPageCode = response.landingPageCode;
