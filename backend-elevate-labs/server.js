@@ -226,7 +226,7 @@ Responsiveness: Ensure proper layout adjustments for mobile, tablet, and desktop
 Provide the entire output as a single HTML file with all CSS and JavaScript embedded inline. No external stylesheets or scripts. Do not include any additional notes or explanations—only the complete code.`
         }
       ],
-      model: 'qwen-2.5-coder-32b',
+      model: 'llama3-70b-8192',
       temperature: 1,
       max_completion_tokens: 2096,
       top_p: 1,
@@ -258,7 +258,7 @@ app.post('/api/risk-analysis', async (req, res) => {
           content: `Generate a Risk Analysis of the following description: "${prompt}". Provide a detailed breakdown of potential risks, their likelihood, and mitigation strategies. Format the output with bold headers, italicized descriptions, and proper spacing.`,
         },
       ],
-      model: 'qwen-2.5-coder-32b', // Replace with your desired model
+      model: 'llama3-70b-8192', // Replace with your desired model
       temperature: 1,
       max_tokens: 1024,
       top_p: 1,
